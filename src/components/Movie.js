@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const DEFAULT_PLACEHOLDER_IMG =
   "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg";
 
-const Movie = ({ movie, imdbid }) => {
+const Movie = ({ movie }) => {
   const [hovered, setHovered] = useState(false);
-  const [details, setDetails] = useState(null);
-  const DETAIL_URL = `http://www.omdbapi.com/?i=${imdbid}&apikey=5274aed9`;
+
   const poster =
     movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMG : movie.Poster;
-
-  useEffect(() => {
-    fetch(DETAIL_URL)
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  }, [DETAIL_URL]);
 
   return (
     <MovieWarp
@@ -27,14 +21,14 @@ const Movie = ({ movie, imdbid }) => {
           ? `${movie.Title.slice(0, 25)}...`
           : movie.Title}
       </MovieTitle>
-      <div>
+      <Link to={`/info/${movie.imdbID}`}>
         <PosterImg
           onClick={() => console.log(`clicked: ${movie.imdbID}`)}
           width='200'
           alt={`The movie titled: ${movie.Title}`}
           src={poster}
         />
-      </div>
+      </Link>
       <p>({movie.Year})</p>
     </MovieWarp>
   );

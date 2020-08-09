@@ -47,7 +47,7 @@ const Home = () => {
       </p>
       <MovieListWrap>
         {loading && !errorMessage ? (
-          <Loading></Loading>
+          <Loading />
         ) : errorMessage ? (
           <div>{errorMessage}</div>
         ) : (
