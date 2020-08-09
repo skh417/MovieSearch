@@ -4,10 +4,10 @@ import styled from "styled-components";
 const DEFAULT_PLACEHOLDER_IMG =
   "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, imdbid }) => {
   const [hovered, setHovered] = useState(false);
   const [details, setDetails] = useState(null);
-  const DETAIL_URL = `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=5274aed9`;
+  const DETAIL_URL = `http://www.omdbapi.com/?i=${imdbid}&apikey=5274aed9`;
   const poster =
     movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMG : movie.Poster;
 
@@ -29,6 +29,7 @@ const Movie = ({ movie }) => {
       </MovieTitle>
       <div>
         <PosterImg
+          onClick={() => console.log(`clicked: ${movie.imdbID}`)}
           width='200'
           alt={`The movie titled: ${movie.Title}`}
           src={poster}

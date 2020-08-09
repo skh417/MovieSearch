@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { withRouter, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Movie from "../components/Movie";
 import Search from "../components/Search";
@@ -25,7 +26,7 @@ const Home = () => {
     setLoading(true);
     setErrorMessage(null);
 
-    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`)
+    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=5274aed9`)
       .then((res) => res.json())
       .then((res) => {
         if (res.Response === "True") {
@@ -51,7 +52,11 @@ const Home = () => {
           <div>{errorMessage}</div>
         ) : (
           movies.map((movie, idx) => (
-            <Movie key={`${idx}-${movie.Title}`} movie={movie} />
+            <Movie
+              key={`${idx}-${movie.Title}`}
+              movie={movie}
+              imdbid={movie.imdbID}
+            />
           ))
         )}
       </MovieListWrap>
@@ -87,4 +92,4 @@ const Loading = styled.div`
   }
 `;
 
-export default Home;
+export default withRouter(Home);
