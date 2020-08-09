@@ -29,6 +29,7 @@ const SearchBox = styled.input`
   height: 30px;
   border: 2px solid green;
   border-radius: 3px;
+  outline: none;
 `;
 
 const SubmitInput = styled.input`

@@ -4,9 +4,9 @@ import Movie from "../components/Movie";
 import Search from "../components/Search";
 import styled from "styled-components";
 
-const MOVIE_API_URL = "http://www.omdbapi.com/?s=man&apikey=5274aed9";
+const MOVIE_API_URL = "http://www.omdbapi.com/?s=remember&apikey=5274aed9";
 
-const App = () => {
+const Home = () => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -61,11 +61,13 @@ const App = () => {
 
 const AppWarp = styled.div`
   text-align: center;
+  min-width: 315px;
 `;
 
 const MovieListWrap = styled.div`
   display: flex;
-  margin: 5px 340px;
+  max-width: 1000px;
+  margin: 5px auto;
   justify-content: center;
   flex-wrap: wrap;
 `;
@@ -85,4 +87,4 @@ const Loading = styled.div`
   }
 `;
 
-export default App;
+export default Home;
