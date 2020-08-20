@@ -20,7 +20,13 @@ const MovieInfo = (props) => {
         </PosterContainer>
         <MovieDetailContainer>
           <MovieTitleP>{`< ${movieDetail.Title} >`}</MovieTitleP>
-          {movieDetail.Ratings && <div>{movieDetail.Ratings[0].Value}</div>}
+          {movieDetail.Ratings &&
+            movieDetail.Ratings.map((data) => (
+              <RatingsContainer>
+                <RatingSource>{data.Source}</RatingSource>
+                <span>{data.Value}</span>
+              </RatingsContainer>
+            ))}
         </MovieDetailContainer>
       </MainContainer>
       <ButtonContainer>
@@ -67,6 +73,15 @@ const MovieTitleP = styled.p`
   text-align: left;
   font-size: 40px;
   font-weight: bold;
+`;
+
+const RatingsContainer = styled.div`
+  margin-bottom: 4px;
+`;
+
+const RatingSource = styled.div`
+  font-size: 20px;
+  margin-bottom: 2px;
 `;
 
 const ButtonContainer = styled.div`
