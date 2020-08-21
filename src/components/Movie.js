@@ -5,7 +5,7 @@ import styled from "styled-components";
 const DEFAULT_PLACEHOLDER_IMG =
   "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, isClicked }) => {
   const [hovered, setHovered] = useState(false);
 
   const poster =
@@ -16,7 +16,7 @@ const Movie = ({ movie }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <MovieTitle isHovered={hovered}>
+      <MovieTitle isHovered={hovered} isClicked={isClicked}>
         {movie.Title.length > 25
           ? `${movie.Title.slice(0, 25)}...`
           : movie.Title}
@@ -29,7 +29,7 @@ const Movie = ({ movie }) => {
           src={poster}
         />
       </Link>
-      <p>({movie.Year})</p>
+      <MovieYear isClicked={isClicked}>({movie.Year})</MovieYear>
     </MovieWarp>
   );
 };
@@ -41,7 +41,14 @@ const MovieWarp = styled.div`
 
 const MovieTitle = styled.h2`
   max-width: 200px;
-  color: ${(props) => (props.isHovered ? "black" : "rgba(44, 62, 80,0.6)")};
+  color: ${(props) =>
+    props.isHovered
+      ? props.isClicked
+        ? "#fdcb6e"
+        : "#e17055"
+      : props.isClicked
+      ? "white"
+      : "#2d3436"};
   font-size: 15px;
   transition: all 0.3s linear;
 `;
@@ -53,6 +60,10 @@ const PosterImg = styled.img`
   &:hover {
     box-shadow: 6px 6px 3px gray;
   }
+`;
+
+const MovieYear = styled.p`
+  color: ${(props) => (props.isClicked ? "white" : "black")};
 `;
 
 export default Movie;

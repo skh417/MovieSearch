@@ -87,7 +87,7 @@ const Home = () => {
         setButtonClicked={setButtonClicked}
       />
       <Header text='Movie Search APIs' isClicked={buttonClicked} />
-      <Search search={search} />
+      <Search search={search} isClicked={buttonClicked} />
       <ThisIsP isClicked={buttonClicked}>
         <i>Sharing a few of our favourite movies...</i>
       </ThisIsP>
@@ -102,6 +102,7 @@ const Home = () => {
               key={`${idx}-${movie.Title}`}
               movie={movie}
               imdbid={movie.imdbID}
+              isClicked={buttonClicked}
             />
           ))
         )}
@@ -113,7 +114,7 @@ const Home = () => {
 const AppWarp = styled.div`
   text-align: center;
   min-width: 315px;
-  background-color: ${(props) => (props.isClicked ? "black" : "white")};
+  background-color: ${(props) => (props.isClicked ? "#2d3436" : "white")};
 `;
 
 const ThisIsP = styled.p`
